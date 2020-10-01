@@ -1,20 +1,21 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, CardColumns} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, CardColumns } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import BreadcrumbNav from '../layout/BreadcrumbComponent';
 
 function RenderForSaleCard({ forsale }) {
     return (
-            <Card>
-                <CardImg top src={forsale.src} />
-                <CardBody>
-                    <CardTitle><strong>{forsale.header}</strong></CardTitle>
-                    <CardSubtitle>{forsale.caption}</CardSubtitle>
-                    <CardText>{forsale.price}</CardText>
-                    <Link to={`/forsale/${forsale.key}`}>
-                        <Button outline color="primary">View</Button>
-                    </Link>
-                </CardBody>
-            </Card>
+        <Card>
+            <CardImg top src={forsale.src} />
+            <CardBody>
+                <CardTitle><strong>{forsale.header}</strong></CardTitle>
+                <CardSubtitle>{forsale.caption}</CardSubtitle>
+                <CardText>{forsale.price}</CardText>
+                <Link to={`/forsale/${forsale.key}`}>
+                    <Button outline color="primary">View</Button>
+                </Link>
+            </CardBody>
+        </Card>
     );
 }
 
@@ -29,12 +30,14 @@ function ForSale(props) {
     });
 
     return (
-        <div className="container">
-            <h1>For Sale</h1>
-            <div className="row">
-            <CardColumns>
-                {forsaleList}
-            </CardColumns>
+        <div>
+            <BreadcrumbNav page="For Sale" />
+            <div className="container">
+                <div className="row">
+                    <CardColumns>
+                        {forsaleList}
+                    </CardColumns>
+                </div>
             </div>
         </div>
     );

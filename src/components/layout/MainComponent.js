@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './HeaderComponent';
+import BreadcrumbNav from './BreadcrumbComponent';
 import Home from '../pages/HomePage';
 import Community from '../pages/CommunityPage';
 import Services from '../pages/ServicesPage';
@@ -12,7 +13,7 @@ import Gigs from '../pages/GigsPage';
 // import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {UncontrolledCarousel} from 'reactstrap';
+import { UncontrolledCarousel} from 'reactstrap';
 
 const mapStateToProps = state => {
     return {
@@ -26,18 +27,19 @@ class Main extends Component {
     render() {
         const HomePage = () => {
             return (
-                <Home/>
+                <Home />
             );
         };
 
         const ForSaleWithId = ({ match }) => {
+            
             const Example = () => <UncontrolledCarousel items={this.props.forsale} />;
             return (
                 <div forsale={this.props.forsale.filter(forsale => forsale.id === +match.params.forsaleId)[0]}>
-                    <h1>breadcrumb</h1>
-                    <Example/>
+                    <BreadcrumbNav page="For Sale"/>
+                    <Example />
                 </div>
-                );
+            );
         };
 
         return (
