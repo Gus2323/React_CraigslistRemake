@@ -13,7 +13,7 @@ import Gigs from '../pages/GigsPage';
 // import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { UncontrolledCarousel} from 'reactstrap';
+import { UncontrolledCarousel } from 'reactstrap';
 
 const mapStateToProps = state => {
     return {
@@ -25,19 +25,26 @@ const mapStateToProps = state => {
 class Main extends Component {
 
     render() {
-        const HomePage = () => {
-            return (
-                <Home />
-            );
-        };
+        const HomePage = () => <Home />;
+
+        const Example = () => (<UncontrolledCarousel items={this.props.forsale[0].slides} />);
+        console.log(this.props.forsale[0].slides);
 
         const ForSaleWithId = ({ match }) => {
-            
-            const Example = () => <UncontrolledCarousel items={this.props.forsale} />;
+
             return (
                 <div forsale={this.props.forsale.filter(forsale => forsale.id === +match.params.forsaleId)[0]}>
-                    <BreadcrumbNav page="For Sale"/>
-                    <Example />
+                    <BreadcrumbNav page="For Sale" />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-6">
+                                <Example />
+                            </div>
+                            <div className="col-6">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.1513333502985!2d-122.19539654919022!3d37.73959377966648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f8596e981bf9b%3A0x3d97126e594ba789!2sOakland%20Coliseum%20DMV!5e0!3m2!1sen!2sus!4v1601619047328!5m2!1sen!2sus" width="450" height="350" frameborder="0"  allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             );
         };
